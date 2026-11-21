@@ -68,7 +68,7 @@ ENVELOPE_URL = f"{PIPE_BASE}/{ENVELOPE_NAME}"
 LOG_JSON = "transport-log.json"
 LOG_HTML = "transport-log.html"
 SLICE_BYTES = 512
-CONVERGE_TIMEOUT_S = 240
+CONVERGE_TIMEOUT_S = 600
 CONVERGE_POLL_S = 10
 RECEIVER_RETRY_S = 90
 
@@ -123,13 +123,45 @@ def put_file(name, content: bytes, message):
     return status
 
 
-def request_pages_build():
-    """Ask Pages to rebuild now (belt and braces; branch pushes normally do)."""
-    try:
-        status, _ = api("POST", f"/repos/{REPO}/pages/builds")
-        print(f"pages build request: HTTP {status}")
-    except Exception as exc:
-        print(f"pages build request failed (non-fatal): {exc}")
+def commit_files(files, message):
+    """Commit several files as ONE commit via the Git trees API.
+
+    The pipe host rebuilds on every push, serially; one commit for the
+    whole log update (JSON + HTML + any evidence) keeps a cycle to two
+    host builds total — the envelope push and this one. (The first
+    standing cycle graded INTERRUPTED at the converge leg because a
+    13-commit deploy burst had the host's build queue backed up for
+    minutes; this is the fix, along with the longer converge window.)
+    """
+    for attempt in (1, 2):
+        status, ref = api("GET", f"/repos/{REPO}/git/ref/heads/main")
+        head_sha = ref["object"]["sha"]
+        status, head = api("GET", f"/repos/{REPO}/git/commits/{head_sha}")
+        entries = []
+        for name, content in files:
+            status, blob = api("POST", f"/repos/{REPO}/git/blobs",
+                               {"content": base64.b64encode(content).decode(),
+                                "encoding": "base64"})
+            if status != 201:
+                raise RuntimeError(f"blob for {name}: HTTP {status}: {blob}")
+            entries.append({"path": name, "mode": "100644",
+                            "type": "blob", "sha": blob["sha"]})
+        status, tree = api("POST", f"/repos/{REPO}/git/trees",
+                           {"base_tree": head["tree"]["sha"], "tree": entries})
+        if status != 201:
+            raise RuntimeError(f"tree: HTTP {status}: {tree}")
+        status, commit = api("POST", f"/repos/{REPO}/git/commits",
+                             {"message": message, "tree": tree["sha"],
+                              "parents": [head_sha]})
+        if status != 201:
+            raise RuntimeError(f"commit: HTTP {status}: {commit}")
+        status, resp = api("PATCH", f"/repos/{REPO}/git/refs/heads/main",
+                           {"sha": commit["sha"]})
+        if status == 200:
+            return commit["sha"]
+        if attempt == 2:
+            raise RuntimeError(f"ref update: HTTP {status}: {resp}")
+    return None
 
 
 # ---------------------------------------------------------------- log
@@ -186,13 +218,12 @@ Current envelope: <a href="envelope.mtof.json">envelope.mtof.json</a>.</p>
 def publish_log(log: dict, extra_files=None):
     (HERE / LOG_JSON).write_text(json.dumps(log, indent=2))
     (HERE / LOG_HTML).write_text(render_html(log))
-    put_file(LOG_JSON, (HERE / LOG_JSON).read_bytes(),
-             f"transport log: cycle {log['cycles'][-1]['cycle']} "
-             f"{log['cycles'][-1]['grade']}")
-    put_file(LOG_HTML, (HERE / LOG_HTML).read_bytes(),
-             f"transport log (html): cycle {log['cycles'][-1]['cycle']}")
-    for name, content, message in (extra_files or []):
-        put_file(name, content, message)
+    last = log["cycles"][-1]
+    files = [(LOG_JSON, (HERE / LOG_JSON).read_bytes()),
+             (LOG_HTML, (HERE / LOG_HTML).read_bytes())]
+    for name, content, _message in (extra_files or []):
+        files.append((name, content))
+    commit_files(files, f"transport log: cycle {last['cycle']} {last['grade']}")
 
 
 # ---------------------------------------------------------------- http
@@ -298,7 +329,6 @@ def main() -> int:
         put_file(ENVELOPE_NAME, envelope_bytes,
                  f"mtof cycle {cycle_no}: heartbeat envelope")
         entry["publishedUtc"] = now_utc()
-        request_pages_build()
     except Exception as exc:
         entry["grade"] = "INTERRUPTED"
         entry["detail"] = f"publish leg failed: {str(exc)[:200]}"
