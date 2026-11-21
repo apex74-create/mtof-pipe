@@ -1,0 +1,43 @@
+{
+  "proof": "MTOF first end-to-end proof over a real network gap, via estate subdomain, plain HTTP, no TLS",
+  "date": "2026-11-21",
+  "carrier": "mtof-proof/2 \u2014 HTTP pipe proof",
+  "origin": {
+    "end": "origin (sender)",
+    "timestampUtc": "2026-11-21T19:39:13.905217+00:00",
+    "payloadPath": "/home/hatch/workspace/your_files/afternoon-watch-processing-verdicts-2026-11-20.md",
+    "payloadName": "afternoon-watch-processing-verdicts-2026-11-20.md",
+    "payloadBytes": 15130,
+    "originSha256": "3f431bc1ab46e18339356464703de249a1aa74a47f9f89a996c716e0504bfe6a",
+    "tokenCount": 15130,
+    "plexCount": 4,
+    "envelopeBytes": 121956,
+    "expansionRatio": 8.061,
+    "tokenizeSeconds": 0.0013
+  },
+  "farEnd": {
+    "end": "far end (receiver)",
+    "timestampUtc": "2026-11-21T19:40:42.165209+00:00",
+    "transportUrl": "http://pipe.apex-airsolutions.com/envelope.mtof.json",
+    "finalUrl": "http://pipe.apex-airsolutions.com/envelope.mtof.json",
+    "scheme": "http",
+    "httpStatus": 200,
+    "serverHeader": "GitHub.com",
+    "envelopeBytesFetched": 121956,
+    "fetchSeconds": 0.7587,
+    "reassembleSeconds": 0.003,
+    "payloadName": "afternoon-watch-processing-verdicts-2026-11-20.md",
+    "payloadBytes": 15130,
+    "originSha256FromEnvelope": "3f431bc1ab46e18339356464703de249a1aa74a47f9f89a996c716e0504bfe6a",
+    "farEndSha256": "3f431bc1ab46e18339356464703de249a1aa74a47f9f89a996c716e0504bfe6a",
+    "match": true
+  },
+  "transport": {
+    "url": "http://pipe.apex-airsolutions.com/envelope.mtof.json",
+    "scheme": "http",
+    "dns": "CNAME pipe.apex-airsolutions.com -> apex74-create.github.io (GoDaddy, TTL 600, additive only)",
+    "host": "GitHub Pages, repo apex74-create/mtof-pipe, https_enforced=false",
+    "fetchedEnvelopeSha256": "ac4750facb1a6104d10c23b6ba77acce6e527bf6517039b916ea0731fc932ac6"
+  },
+  "verdict": "MATCH \u2014 far-end SHA-256 equals origin SHA-256; reassembled payload byte-identical (cmp clean)"
+}
