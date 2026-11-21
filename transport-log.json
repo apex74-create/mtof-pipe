@@ -44,6 +44,30 @@
       },
       "grade": "INTERRUPTED",
       "detail": "publish-converge leg failed: pipe answered but never served cycle 1's envelope within 240s"
+    },
+    {
+      "cycle": 2,
+      "runner": "local-vm",
+      "startedUtc": "2026-11-21T19:54:26.170421+00:00",
+      "publishedUtc": "2026-11-21T19:54:29.657185+00:00",
+      "fetchedUtc": "2026-11-21T19:55:11.525069+00:00",
+      "payloadName": "heartbeat-cycle-0002.txt",
+      "payloadBytes": 787,
+      "payloadSha256": "c5ae55cfca3ec1ee00f94904b090bb23ccf54cacd9a2dc31e03bfa2228a2a58b",
+      "envelopeBytes": 7171,
+      "envelopeSha256AsPublished": "5c2a774593df31b2bea4cb4adc59b269e929cb12eb9a6dcc09842079de3f0ff5",
+      "envelopeSha256AsFetched": "5c2a774593df31b2bea4cb4adc59b269e929cb12eb9a6dcc09842079de3f0ff5",
+      "farEndSha256": "c5ae55cfca3ec1ee00f94904b090bb23ccf54cacd9a2dc31e03bfa2228a2a58b",
+      "httpStatus": 200,
+      "restingEnvelopeCheck": {
+        "result": "match",
+        "priorCycle": 1,
+        "expectedSha256": "618542f5d46f18e92c1172fbcc3643c96753e8b65b58333cd1076d073fa87f6e",
+        "httpStatus": 200,
+        "fetchedSha256": "618542f5d46f18e92c1172fbcc3643c96753e8b65b58333cd1076d073fa87f6e"
+      },
+      "grade": "PASS",
+      "detail": "envelope byte-identical in transit; payload reassembled hash-identical at the far end over plain http"
     }
   ],
   "format": "MTOF",
