@@ -1,1 +1,58 @@
-{"cadenceMinutes":30,"cycles":[{"cycle":0,"detail":"run of record — the first end-to-end proof over the open gap (one-shot, Nov 21 2026): real house payload tokenized, published to this subdomain, fetched over plain http with no TLS in the path, reassembled byte-identical (cmp clean). Envelope and proof record archived under runs/first-proof-2026-11-21/. Report: mtof-first-proof-2026-11-21.md","envelopeBytes":121956,"envelopeSha256AsFetched":"ac4750facb1a6104d10c23b6ba77acce6e527bf6517039b916ea0731fc932ac6","envelopeSha256AsPublished":"ac4750facb1a6104d10c23b6ba77acce6e527bf6517039b916ea0731fc932ac6","farEndSha256":"3f431bc1ab46e18339356464703de249a1aa74a47f9f89a996c716e0504bfe6a","fetchedUtc":"2026-11-21T19:40:42.165209+00:00","grade":"PASS","httpStatus":200,"payloadBytes":15130,"payloadName":"afternoon-watch-processing-verdicts-2026-11-20.md","payloadSha256":"3f431bc1ab46e18339356464703de249a1aa74a47f9f89a996c716e0504bfe6a","publishedUtc":"2026-11-21T19:39:45+00:00","restingEnvelopeCheck":{"result":"no-prior-cycle"},"runner":"local-vm (one-shot proof, mtof-proof/2)","startedUtc":"2026-11-21T19:39:13.905217+00:00"}],"format":"MTOF","grades":{"INTERRUPTED":"A leg of the transport failed: publish failed, the host/subdomain did not answer, the new envelope never converged into service, or the receiver was served a stale envelope. The failed leg is named in the entry's detail.","PASS":"Envelope bytes as fetched are identical to bytes as published, and the reassembled payload's SHA-256 equals the origin hash — the transport carried the cycle untouched over plain HTTP.","TAMPERED":"Bytes changed in transit or at rest: fetched envelope bytes differ from published bytes, a plex stream or the payload fails verification, or the resting check found a previous cycle's envelope altered on the host. Evidence envelopes are preserved under cycles/."},"logUrl":"http://pipe.apex-airsolutions.com/transport-log.json","system":"MTOF standing transport — house transport (Multiplex TOken Format), Apex Air Solutions","transportUrl":"http://pipe.apex-airsolutions.com/envelope.mtof.json"}
+{
+  "cadenceMinutes": 30,
+  "cycles": [
+    {
+      "cycle": 0,
+      "detail": "run of record \u2014 the first end-to-end proof over the open gap (one-shot, Nov 21 2026): real house payload tokenized, published to this subdomain, fetched over plain http with no TLS in the path, reassembled byte-identical (cmp clean). Envelope and proof record archived under runs/first-proof-2026-11-21/. Report: mtof-first-proof-2026-11-21.md",
+      "envelopeBytes": 121956,
+      "envelopeSha256AsFetched": "ac4750facb1a6104d10c23b6ba77acce6e527bf6517039b916ea0731fc932ac6",
+      "envelopeSha256AsPublished": "ac4750facb1a6104d10c23b6ba77acce6e527bf6517039b916ea0731fc932ac6",
+      "farEndSha256": "3f431bc1ab46e18339356464703de249a1aa74a47f9f89a996c716e0504bfe6a",
+      "fetchedUtc": "2026-11-21T19:40:42.165209+00:00",
+      "grade": "PASS",
+      "httpStatus": 200,
+      "payloadBytes": 15130,
+      "payloadName": "afternoon-watch-processing-verdicts-2026-11-20.md",
+      "payloadSha256": "3f431bc1ab46e18339356464703de249a1aa74a47f9f89a996c716e0504bfe6a",
+      "publishedUtc": "2026-11-21T19:39:45+00:00",
+      "restingEnvelopeCheck": {
+        "result": "no-prior-cycle"
+      },
+      "runner": "local-vm (one-shot proof, mtof-proof/2)",
+      "startedUtc": "2026-11-21T19:39:13.905217+00:00"
+    },
+    {
+      "cycle": 1,
+      "runner": "local-vm",
+      "startedUtc": "2026-11-21T19:48:16.434618+00:00",
+      "publishedUtc": "2026-11-21T19:48:19.884303+00:00",
+      "fetchedUtc": null,
+      "payloadName": "heartbeat-cycle-0001.txt",
+      "payloadBytes": 786,
+      "payloadSha256": "36524243ea342c934dfb57b1d9576e8f83d89948e774a97de402023a50e9a520",
+      "envelopeBytes": 7163,
+      "envelopeSha256AsPublished": "618542f5d46f18e92c1172fbcc3643c96753e8b65b58333cd1076d073fa87f6e",
+      "envelopeSha256AsFetched": null,
+      "farEndSha256": null,
+      "httpStatus": null,
+      "restingEnvelopeCheck": {
+        "result": "match",
+        "priorCycle": 0,
+        "expectedSha256": "ac4750facb1a6104d10c23b6ba77acce6e527bf6517039b916ea0731fc932ac6",
+        "httpStatus": 200,
+        "fetchedSha256": "ac4750facb1a6104d10c23b6ba77acce6e527bf6517039b916ea0731fc932ac6"
+      },
+      "grade": "INTERRUPTED",
+      "detail": "publish-converge leg failed: pipe answered but never served cycle 1's envelope within 240s"
+    }
+  ],
+  "format": "MTOF",
+  "grades": {
+    "INTERRUPTED": "A leg of the transport failed: publish failed, the host/subdomain did not answer, the new envelope never converged into service, or the receiver was served a stale envelope. The failed leg is named in the entry's detail.",
+    "PASS": "Envelope bytes as fetched are identical to bytes as published, and the reassembled payload's SHA-256 equals the origin hash \u2014 the transport carried the cycle untouched over plain HTTP.",
+    "TAMPERED": "Bytes changed in transit or at rest: fetched envelope bytes differ from published bytes, a plex stream or the payload fails verification, or the resting check found a previous cycle's envelope altered on the host. Evidence envelopes are preserved under cycles/."
+  },
+  "logUrl": "http://pipe.apex-airsolutions.com/transport-log.json",
+  "system": "MTOF standing transport \u2014 house transport (Multiplex TOken Format), Apex Air Solutions",
+  "transportUrl": "http://pipe.apex-airsolutions.com/envelope.mtof.json"
+}
