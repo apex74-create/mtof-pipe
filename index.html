@@ -2,13 +2,24 @@
 <html lang="en">
 <head><meta charset="utf-8"><title>MTOF Pipe — Apex Air Solutions</title></head>
 <body>
-<h1>MTOF Pipe</h1>
-<p>Transit host for the house transport (MTOF — Multiplex TOken Format)
-first end-to-end proof, November 21, 2026. This subdomain serves one
-file: <a href="envelope.mtof.json">envelope.mtof.json</a> — a tokenized
-payload in an enriched JSON envelope, published here so a far-end
-receiver can fetch it over plain HTTP and un-convert it in the house
-method. The token layer is the house format; no TLS is used or needed
-for this proof fetch.</p>
+<h1>MTOF Pipe — the house transport, standing</h1>
+<p>This subdomain is the transit host of the house transport
+(MTOF — Multiplex TOken Format) of Apex Air Solutions. What began as a
+one-shot proof on November 21, 2026 now <b>stays transport</b>: a
+standing cycle runs every 30 minutes — a fresh heartbeat payload is
+converted to tokens at the origin, its envelope is published here,
+an independent far-end receiver fetches it over <b>plain HTTP</b>
+(no TLS in the path; the token method is the layer), un-converts it,
+and verifies the hash.</p>
+<p>Every cycle grades itself PASS, INTERRUPTED, or TAMPERED and
+appends the result to the pipe's own public diary:</p>
+<ul>
+<li><a href="transport-log.html">Transport log (readable)</a></li>
+<li><a href="transport-log.json">Transport log (JSON)</a></li>
+<li><a href="envelope.mtof.json">Current envelope</a> — the resting
+token envelope of the latest cycle</li>
+</ul>
+<p>If you leave a pipe open, someone is going to come and check it.
+This log is how the pipe says what it saw.</p>
 </body>
 </html>
