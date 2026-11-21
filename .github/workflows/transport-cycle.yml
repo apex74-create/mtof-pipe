@@ -1,0 +1,40 @@
+name: mtof-standing-transport
+
+# The standing cycle of the house transport (MTOF). Every 30 minutes:
+# tokenize a fresh heartbeat payload, publish its envelope to the pipe
+# subdomain, fetch it back over plain HTTP through the independent
+# receiver, verify the hash, and append the graded result to the
+# transport log the pipe serves about itself.
+#
+# The token below is this repo's own GITHUB_TOKEN with contents:write
+# and nothing else — it can touch this repository only, no other repo
+# and no other record.
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mtof-standing-transport
+  cancel-in-progress: false
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pipe
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run one transport cycle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 cycle.py
