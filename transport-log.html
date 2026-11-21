@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>MTOF Standing Transport — Log</title></head>
+<body>
+<h1>MTOF Standing Transport — the pipe's diary</h1>
+<p>This subdomain is the transit host of the house transport
+(MTOF — Multiplex TOken Format, Apex Air Solutions). A standing cycle
+runs every 30 minutes: a fresh heartbeat
+payload is tokenized at the origin, published here as
+<a href="envelope.mtof.json">envelope.mtof.json</a>, fetched back over
+plain HTTP by an independent receiver, un-converted, and hash-verified.
+Every cycle's grade is appended to this log and never rewritten.</p>
+<p>Grades: <b>PASS</b> — bytes arrived exactly as sent and the payload
+reassembled hash-identical. <b>INTERRUPTED</b> — a leg of the transport
+failed (the failed leg is named). <b>TAMPERED</b> — bytes changed in
+transit or at rest.</p>
+<p>Machine-readable log: <a href="transport-log.json">transport-log.json</a>.
+Current envelope: <a href="envelope.mtof.json">envelope.mtof.json</a>.</p>
+<table border="1" cellspacing="0" cellpadding="6">
+<tr><th>Cycle</th><th>Started (UTC)</th><th>Grade</th><th>Detail</th>
+<th>Payload SHA-256</th><th>Envelope SHA-256 (as published)</th></tr>
+<tr><td>0</td><td>2026-11-21T19:39:13.905217+00:00</td><td style='color:#1a7f37;font-weight:bold'>PASS</td><td>run of record — the first end-to-end proof over the open gap (one-shot, Nov 21 2026): real house payload tokenized, published to this subdomain, fetched over plain http with no TLS in the path, reassembled byte-identical (cmp clean). Envelope and proof record archived under runs/first-proof-2026-11-21/. Report: mtof-first-proof-2026-11-21.md</td><td><code>3f431bc1ab46e183…</code></td><td><code>ac4750facb1a6104…</code></td></tr>
+</table>
+</body>
+</html>
