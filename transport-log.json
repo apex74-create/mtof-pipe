@@ -788,6 +788,30 @@
       },
       "grade": "PASS",
       "detail": "envelope byte-identical in transit; payload reassembled hash-identical at the far end over plain http"
+    },
+    {
+      "cycle": 33,
+      "runner": "github-actions",
+      "startedUtc": "2026-11-22T10:09:31.633191+00:00",
+      "publishedUtc": "2026-11-22T10:09:33.073616+00:00",
+      "fetchedUtc": "2026-11-22T10:10:13.369569+00:00",
+      "payloadName": "heartbeat-cycle-0033.txt",
+      "payloadBytes": 789,
+      "payloadSha256": "2450421f497478ae98199b7d99a0b994b07acdd5ed80493b00dfced3351b048b",
+      "envelopeBytes": 7187,
+      "envelopeSha256AsPublished": "4976fac2d3e7b9a3c856c895962073781605f622fc9245ec876afe1ece4b58f2",
+      "envelopeSha256AsFetched": "4976fac2d3e7b9a3c856c895962073781605f622fc9245ec876afe1ece4b58f2",
+      "farEndSha256": "2450421f497478ae98199b7d99a0b994b07acdd5ed80493b00dfced3351b048b",
+      "httpStatus": 200,
+      "restingEnvelopeCheck": {
+        "result": "match",
+        "priorCycle": 32,
+        "expectedSha256": "0a7a53e16e986baf7ccc4f0c5bde306b7a06787192557b8caf95b18851e8781e",
+        "httpStatus": 200,
+        "fetchedSha256": "0a7a53e16e986baf7ccc4f0c5bde306b7a06787192557b8caf95b18851e8781e"
+      },
+      "grade": "PASS",
+      "detail": "envelope byte-identical in transit; payload reassembled hash-identical at the far end over plain http"
     }
   ],
   "format": "MTOF",
