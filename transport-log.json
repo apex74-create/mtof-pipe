@@ -4532,6 +4532,30 @@
       },
       "grade": "INTERRUPTED",
       "detail": "publish leg failed: PUT envelope.mtof.json failed: HTTP 500: "
+    },
+    {
+      "cycle": 189,
+      "runner": "github-actions",
+      "startedUtc": "2026-11-25T16:35:59.176142+00:00",
+      "publishedUtc": "2026-11-25T16:36:00.776930+00:00",
+      "fetchedUtc": "2026-11-25T16:36:41.220643+00:00",
+      "payloadName": "heartbeat-cycle-0189.txt",
+      "payloadBytes": 790,
+      "payloadSha256": "4bfc24ac54cfbd1dfd42b79580316aad0501ae84ba790099e845f2c04705030e",
+      "envelopeBytes": 7195,
+      "envelopeSha256AsPublished": "525ad998765528ad69544a174024c789ee2dad4fe64e13ccf8cb0ea9cd839c66",
+      "envelopeSha256AsFetched": "525ad998765528ad69544a174024c789ee2dad4fe64e13ccf8cb0ea9cd839c66",
+      "farEndSha256": "4bfc24ac54cfbd1dfd42b79580316aad0501ae84ba790099e845f2c04705030e",
+      "httpStatus": 200,
+      "restingEnvelopeCheck": {
+        "result": "CHANGED",
+        "priorCycle": 188,
+        "expectedSha256": "d6a7f2869dbdbb7292e7d49787d168b333f18a68dd6bc21d35917692066e7681",
+        "httpStatus": 200,
+        "fetchedSha256": "9e8a6b504e7cb6f323c018e25016cfff4b97d04f8400851c104a4d6b7341b981"
+      },
+      "grade": "TAMPERED",
+      "detail": "resting envelope of cycle 188 was altered at rest (fetched hash != hash recorded as published)"
     }
   ],
   "format": "MTOF",
