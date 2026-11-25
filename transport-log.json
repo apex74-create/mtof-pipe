@@ -4508,6 +4508,30 @@
       },
       "grade": "PASS",
       "detail": "envelope byte-identical in transit; payload reassembled hash-identical at the far end over plain http"
+    },
+    {
+      "cycle": 188,
+      "runner": "github-actions",
+      "startedUtc": "2026-11-25T16:14:38.724189+00:00",
+      "publishedUtc": null,
+      "fetchedUtc": null,
+      "payloadName": "heartbeat-cycle-0188.txt",
+      "payloadBytes": 790,
+      "payloadSha256": "55c99291a51fdfcbf9fb88880c6c7b3bb953da40999ce5c6ecd3bca96a091078",
+      "envelopeBytes": 7195,
+      "envelopeSha256AsPublished": "d6a7f2869dbdbb7292e7d49787d168b333f18a68dd6bc21d35917692066e7681",
+      "envelopeSha256AsFetched": null,
+      "farEndSha256": null,
+      "httpStatus": null,
+      "restingEnvelopeCheck": {
+        "result": "match",
+        "priorCycle": 187,
+        "expectedSha256": "9e8a6b504e7cb6f323c018e25016cfff4b97d04f8400851c104a4d6b7341b981",
+        "httpStatus": 200,
+        "fetchedSha256": "9e8a6b504e7cb6f323c018e25016cfff4b97d04f8400851c104a4d6b7341b981"
+      },
+      "grade": "INTERRUPTED",
+      "detail": "publish leg failed: PUT envelope.mtof.json failed: HTTP 500: "
     }
   ],
   "format": "MTOF",
